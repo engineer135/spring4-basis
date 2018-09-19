@@ -18,60 +18,43 @@
   <form class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">TMS Login</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="text" id="id" class="form-control" placeholder="id" required autofocus>
+    <input type="text" id="id" name="userId" class="form-control" placeholder="id" autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" id="inputPassword" name="userPw" class="form-control" placeholder="Password">
     <!-- <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div> -->
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button id="signIn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
   </form>
 
     <!-- JS -->
 	<script>
     $(document).ready(function() {
-        $( '#create' ).click(function( event ){
-             $('#cretModal').modal();
-        });
+    	$(document).on("click","#signIn",function(e){
+    		e.preventDefault();
+    		signIn();
+    	});
     });
-	function get_msg(message) {
-	     var move = '90px';
-	     jQuery('#message').text(message);
-	     jQuery('#message').animate({
-	          left : '+=' + move
-	     }, 'slow', function() {
-	          jQuery('#message').delay(500).animate({ left : '-=' + move }, 'slow');
-	     });
-	}
 
-	<c:if test="${error == 'true'}">
-	jQuery(function() {
-	     get_msg("로그인 실패하였습니다.");
-	});
-
-	</c:if>
-
-	function signin() {
+	function signIn() {
 	     $.ajax({
-	          url : '${pageContext.request.contextPath}/signinProcess',
+	          url : '${pageContext.request.contextPath}/signIn',
 	          data: $('form input').serialize(),
 	          type: 'POST',
 	          dataType : 'json',
 	          beforeSend: function(xhr) {
 	               xhr.setRequestHeader("Accept", "application/json");
 	          }
-	     }).done(function(body) {
-	          var message = body.response.message;
-	          var error = body.response.error;
-	          if (error) get_msg(message);
-
-	          if (error == false) {
-	               var url = '${referer}';
-	               if (url == '') url = '<c:url value="${pageContext.request.contextPath}/m/m01" />';
-	               location.href = url;
+	     }).done(function(data) {
+	          //console.log(data);
+	          if(data.isLogin == 'Y'){
+	        	  location.replace("/main");
+	          }else{
+	        	  //alert("로그인 실패. 아이디 비번 확인");
+	        	  location.replace("/main");
 	          }
 	     });
 

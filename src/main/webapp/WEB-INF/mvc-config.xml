@@ -26,6 +26,13 @@
 	        <property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0" />
+	</bean>
+	
+	 <!-- Excel CSV Write View -->
+    <bean id="csvWriteView" class="com.tsmi.common.CsvWriteView" />
+	
 	<!-- JSON 객체 리턴을 위해 추가 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
@@ -41,6 +48,9 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/" />
+            <mvc:exclude-mapping path="/login" />
+            <mvc:exclude-mapping path="/signIn" />
             <mvc:exclude-mapping path="/images/**" />
             <mvc:exclude-mapping path="/js/**" />
             <mvc:exclude-mapping path="/css/**" />
