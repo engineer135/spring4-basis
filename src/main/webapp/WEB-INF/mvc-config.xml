@@ -10,10 +10,15 @@
 	<mvc:default-servlet-handler />
 	
     <!-- Uncomment and your base-package here: -->
-         <context:component-scan
+    <context:component-scan
             base-package="com.engineer135.controller"/>  
 
     <mvc:annotation-driven />
+    
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+    <mvc:resources mapping="/css/**" location="/resources/css/" />
+    <mvc:resources mapping="/js/**" location="/resources/js/" />
+    <mvc:resources mapping="/images/**" location="/resources/images/" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	        <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
@@ -21,6 +26,7 @@
 	        <property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<!-- JSON 객체 리턴을 위해 추가 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
@@ -28,6 +34,19 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- 인터셉터 객체 생성 -->
+    <bean id="WebInterceptor" class="com.tsmi.common.WebInterceptor"/>
+    <!-- Interceptor 설정 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/images/**" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <ref bean="WebInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 	<!-- <mvc:view-controller path="/" view-name="/showMessage"/> -->
 	
