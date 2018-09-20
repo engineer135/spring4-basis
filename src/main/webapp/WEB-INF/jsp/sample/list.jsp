@@ -33,6 +33,8 @@
 		
 		<table id="jqGrid"></table>
     	<div id="jqGridPager"></div>
+    	<button id="csvExport">Export to CSV</button>
+    	<button id="excelExport">Export to EXCEL</button>
     	
     	<script>
     		var GRID;
@@ -52,6 +54,41 @@
 		    		$("#cloneSearchForm input[name=cPage]").val($('#jqGrid').getGridParam('page')); // 현재 페이지 셋팅
 		    		$("#cloneSearchForm").attr({"action":"${pageContext.request.contextPath}/sample/form"}).submit();
 		    	});
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	$("#csvExport").on("click", function(){
+					$("#jqGrid").jqGrid("exportToCsv",{
+						separator: ",",
+						separatorReplace : "", // in order to interpret numbers
+						quote : '"', 
+						escquote : '"', 
+						newLine : "\r\n", // navigator.userAgent.match(/Windows/) ?	'\r\n' : '\n';
+						replaceNewLine : " ",
+						includeCaption : true,
+						includeLabels : true,
+						includeGroupHeader : true,
+						includeFooter: true,
+						fileName : "jqGridExport.csv",
+						returnAsString : false
+					})
+				});
+				
+				
+				
+				
+				$("#excelExport").on("click", function(){
+					$("#jqGrid").jqGrid("exportToExcel",{
+						includeLabels : true,
+						includeGroupHeader : true,
+						includeFooter: true,
+						fileName : "jqGridExport.xlsx",
+						maxlength : 40 // maxlength for visible string data 
+				});
+			})
+				
 		    });
 		
 			function getList() {

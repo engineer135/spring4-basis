@@ -18,6 +18,8 @@
     <script type="text/ecmascript" src="${pageContext.request.contextPath}/js/jqgrid/js/i18n/grid.locale-kr.js"></script>
     <!-- This is the Javascript file of jqGrid -->   
     <script type="text/ecmascript" src="${pageContext.request.contextPath}/js/jqgrid/js/jquery.jqGrid.min.js"></script>
+    <!--  jsZip. jqGrid에서 엑셀 다운로드 기능 사용시 필요한 라이브러리 -->
+    <script type="text/ecmascript" src="${pageContext.request.contextPath}/js/jszip/jszip.min.js"></script>
     <!-- This is the localization file of the grid controlling messages, labels, etc.
     <!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
     <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/js/jqgrid/css/jquery-ui.css" />
