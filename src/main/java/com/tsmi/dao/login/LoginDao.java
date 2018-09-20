@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tsmi.dto.login.UserVO;
+import com.tsmi.vo.login.UserVO;
 
 @Repository
 public class LoginDao {

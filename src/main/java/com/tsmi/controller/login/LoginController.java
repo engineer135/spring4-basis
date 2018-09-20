@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tsmi.dto.login.UserVO;
 import com.tsmi.service.login.LoginService;
+import com.tsmi.vo.login.UserVO;
 
 @Controller
 public class LoginController {

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tsmi.dao.login.LoginDao;
-import com.tsmi.dto.login.UserVO;
 import com.tsmi.service.login.LoginService;
+import com.tsmi.vo.login.UserVO;
 
 import ch.qos.logback.classic.Logger;
 

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CommonFileDownload {
 	public static void fileDownload(Map<String,Object> fileInfo, HttpServletResponse response) throws Exception {
 		// TODO 파일정보에서 다운받을 파일 설정하기
-		File file = new File("C:\\tms-upload\\2018\\9\\19\\f_130440268017497822000000.png");
+		File file = new File("C:\\windows\\win.ini");
 
 		response.setContentType("application/download");
 		response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());

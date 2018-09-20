@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+    
+    <select id="selectUserList" parameterType="boardVO" resultType="HashMap">
+        SELECT 
+        	* 
+        FROM SYS_USER
+        WHERE 1=1
+        <if test="@com.tsmi.common.MyBatisEmptyCheck@isNotEmpty(searchUserId)">
+        	AND USER_ID = #{searchUserId}
+        </if>
+        <if test="@com.tsmi.common.MyBatisEmptyCheck@isNotEmpty(searchUserName)">
+        	AND USER_NAME = #{searchUserName}
+        </if>
+        <if test="@com.tsmi.common.MyBatisEmptyCheck@isNotEmpty(searchUserKb1)">
+        	AND USER_KB1 = #{searchUserKb1}
+        </if>
+    </select>
+    
+    <insert id="insertUserInfo" parameterType="boardVO">
+    	INSERT INTO SYS_USER (USER_ID, USER_NAME, USER_KB1, USER_PW)
+    	VALUES
+    	(
+    		#{userId},
+    		#{userName},
+    		#{userKb1},
+    		#{userPw}
+    	)
+    </insert>
+    
+    <select id="selectUserInfo" parameterType="boardVO" resultType="HashMap">
+        SELECT 
+        	* 
+        FROM SYS_USER
+        WHERE 1=1
+        AND USER_ID = #{userId}
+    </select>
+    
+    <update id="updateUserInfo" parameterType="boardVO">
+    	UPDATE SYS_USER
+    	SET 
+    	USER_NAME = #{userName},
+    	USER_KB1 = #{userKb1},
+    	USER_PW = #{userPw}
+    	WHERE
+    	USER_ID = #{userId}
+    </update>
+    
+</mapper>

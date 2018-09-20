@@ -12,13 +12,13 @@
 	</head> 
 	<body>	
 		<h1>fileUpload sample</h1>
-		<form method="POST" enctype="multipart/form-data" action="upload">
+		<form method="POST" enctype="multipart/form-data" action="/sample/upload">
 		    <p>File to upload: <input type="file" name="file"></p>
 		    <input type="text" name="value" value="test string"/>
 		    <p><input type="submit" value="Upload"> Press here to upload the file!</p>
 		</form>
 		
-		<p><a href="download">파일 다운로드 테스트</a></p>
+		<p><a href="/sample/download">파일 다운로드 테스트</a></p>
 		
 	</body>
 </html>

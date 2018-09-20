@@ -1,0 +1,28 @@
+SVN
+https://192.168.1.80:20443/svn/TMS-INTRA/
+
+java 1.8
+tomcat 7
+spring 4.2.6
+sitemesh 3.0.1
+mybatis 3.4.1
+logback 1.0.13
+jquery 3.3.1
+superCsv 2.4.0
+amchart version?
+jqgrid 5.3.1 http://www.trirand.com/blog/
+
+service 메소드명 규칙
+select* (트랜잭션 미적용)
+insert*, update*, delete* (트랜잭션 적용)
+
+myBatis 규칙
+리턴받을때는 HashMap으로, 대문자 컬럼명 그대로 받음. ex) USER_NAME
+파라미터는 camelCase로, 보낸다. ex) userName
+조회용 파라미터는 앞에 search를 붙인다. ex) searchUserName
+
+공통 기능은 sample 패키지 안에 있음.
+
+server.xml utf-8 설정
+<Connector connectionTimeout="20000" port="8090" protocol="HTTP/1.1" redirectPort="8443" URIEncoding="utf-8"/>
+<Connector port="8010" protocol="AJP/1.3" redirectPort="8443" URIEncoding="utf-8"/>

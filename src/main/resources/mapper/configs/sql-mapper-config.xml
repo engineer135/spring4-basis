@@ -6,6 +6,7 @@
     </settings>
 
     <typeAliases>
-		<typeAlias alias="userVO" type="com.tsmi.dto.login.UserVO"/>
+		<typeAlias alias="userVO" type="com.tsmi.vo.login.UserVO"/>
+		<typeAlias alias="boardVO" type="com.tsmi.vo.sample.BoardVO"/>
     </typeAliases>
 </configuration>
