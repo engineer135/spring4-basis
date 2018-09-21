@@ -5,11 +5,17 @@
   <head>
     <title><sitemesh:write property='title'/></title>
     
-    <!-- 공통 JS -->
+    <!-- 공통 JS/CSS -->
 	<script src="${pageContext.request.contextPath}/js/jquery/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery/jquery.fix.clone.js"></script>
+	<!-- airDatePicker -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/datepicker/css/datepicker.css" />
+	<script src="${pageContext.request.contextPath}/js/datepicker/js/datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/js/datepicker/js/i18n/datepicker.en.js"></script>
 	
-	<!-- CSS -->
-	
+	<!-- sumoSelect -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/multiselect/css/sumoselect.css" />
+	<script src="${pageContext.request.contextPath}/js/multiselect/js/jquery.sumoselect.min.js"></script>
 	
 	
 	
@@ -44,6 +50,9 @@
     </div>
     <script>
     	/* 공통스크립트 */
+    	$(document).ready(function() {
+    		$('select').SumoSelect(); // 셀렉트 박스 전체적용
+    	});
     	
     	// 폼 복사용 펑션
     	// 검색조건 복사해서, 등록/수정폼 들어갈때 가지고 갈 폼을 생성해준다.
