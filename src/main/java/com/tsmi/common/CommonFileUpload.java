@@ -43,6 +43,33 @@ public class CommonFileUpload {
         	resultMap.put("msg", "파일 경로가 지정되지 않았습니다.");
         	return resultMap;
         }
+		
+	String extension = FilenameUtils.getExtension(file.getOriginalFilename()).toLowerCase();
+        // 확장자 체크
+        if(!fileType.equals("")) {
+        	boolean isAllowedExt = false;
+        	
+        	for(String allowedExt : fileAllowedExt.split(",")) {
+        		logger.debug("allowedExt===="+allowedExt);
+        		logger.debug("uploaded file extension===="+extension);
+             	if(allowedExt.indexOf(extension) < 0) {
+             		/*logger.error("불가능한 파일 확장자 업로드.");
+                 	resultMap.put("result", 0);
+                 	resultMap.put("msg", "유효한 확장자가 아닙니다.\r\n"+fileAllowedExt+" 만 업로드 가능합니다.");
+                 	return resultMap;*/
+             	}else {
+             		isAllowedExt = true;
+             		break;
+             	}
+             }
+        	
+        	if(!isAllowedExt) {
+        		logger.error("불가능한 파일 확장자 업로드.");
+             	resultMap.put("result", 0);
+             	resultMap.put("msg", "유효한 확장자가 아닙니다.\r\n"+fileAllowedExt+" 만 업로드 가능합니다.");
+             	return resultMap;
+        	}
+        }
         
         LocalDate currentDate = LocalDate.now();
         int year = currentDate.getYear();
